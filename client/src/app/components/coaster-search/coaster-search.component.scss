@@ -1,0 +1,16 @@
+@import "../../../variables.scss";
+
+.search-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: 0 !important;
+}
+
+.search-button {
+    background: $color-secondary;
+    color: $color-text;
+    padding: 4px;
+    border: none;
+    border-top-right-radius: 25%;
+    border-bottom-right-radius: 25%;
+}
