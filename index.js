@@ -107,11 +107,28 @@ app.get('/rcdb/results/:input', (req, res) => {
 app.get('/rcdb/details/:id', (req, res) => {
     requestPromise(`https://rcdb.com/${req.params.id}.htm`)
         .then((html) => {
-            let arrangementStr = $('section:nth-child(4) > table.stat-tbl > tbody > tr > td', html);
-            let carCount = arrangementStr.charAt(arrangementStr.indexOf(' cars per train') - 1);
-            let seatCount = arrangementStr.charAt(arrangementStr.indexOf('Riders are arranged ') + 1);
-            let rowCount = arrangementStr.charAt(arrangementStr.indexOf(' rows for a total') - 1);
-            res.end();
+            //let arrangementStr = $('section:nth-child(4) > table.stat-tbl > tbody > tr > td', html);
+            //let carCount = arrangementStr.charAt(arrangementStr.indexOf(' cars per train') - 1);
+            //let seatCount = arrangementStr.charAt(arrangementStr.indexOf('Riders are arranged ') + 1);
+            //let rowCount = arrangementStr.charAt(arrangementStr.indexOf(' rows for a total') - 1);
+
+            let coaster = {
+                oneStarRatingCount: parseInt(Math.random() * 50),
+                twoStarRatingCount: parseInt(Math.random() * 30),
+                threeStarRatingCount: parseInt(Math.random() * 40),
+                fourStarRatingCount: parseInt(Math.random() * 50),
+                fiveStarRatingCount: parseInt(Math.random() * 60),
+                sixStarRatingCount: parseInt(Math.random() * 100),
+                sevenStarRatingCount: parseInt(Math.random() * 100),
+                eightStarRatingCount: parseInt(Math.random() * 300),
+                nineStarRatingCount: parseInt(Math.random() * 150),
+                tenStarRatingCount: parseInt(Math.random() * 100),
+                name: $('#feature > div:nth-child(1) > h1', html).text(),
+                train: null
+            };
+
+            console.log(coaster);
+            res.json(coaster);
         })
         .catch((err) => {
             LOGGER.error(err);
